@@ -24,41 +24,116 @@ main
   section.sectionBox.showVideo
     .videoCont 
       img(src="@/assets/img/video.svg")
-  section.sectionBox.features
-    .feaCont 
-      h3 Key Features
-    .cardWrap 
-      .cardInner
-        .card
-          .cardIcon 
-            img(src="@/assets/img/Asset21.svg" style="width: 103px;")
-          .cardCont
-            h4 Serverless Architecture
-            p Embrace the simplicity of skapi's 100% serverless architecture. Say goodbye to dealing with terminals, installing frameworks on your machine, or worrying about scalability. With skapi, you can focus on building incredible web services without the hassle.
-        .card
-          .cardIcon 
-            img(src="@/assets/img/Asset14.png" style="width: 72px;")
-          .cardCont
-            h4 Database
-            p Experience the power of an auto-indexed, scalable database that combines the best of relational and NoSQL architectures. skapi's innovative database solution ensures optimal performance and flexibility for your web services.
-        .card
-          .cardIcon 
-            img(src="@/assets/img/Asset21.svg")
-          .cardCont
-            h4 Serverless Architecture
-            p
-        .card
-          .cardIcon 
-            img(src="@/assets/img/Asset21.svg")
-          .cardCont
-            h4 Serverless Architecture
-            p
+  //- section.sectionBox.features
+    .stickyWrap
+      .feaCont 
+        h3 Key Features
+      .cardWrap()
+        .cardInner
+          .card
+            .cardIcon 
+              img(src="@/assets/img/Asset21.svg" style="width: 103px;")
+            .cardCont
+              h4 Serverless Architecture
+              p Embrace the simplicity of skapi's 100% serverless architecture. Say goodbye to dealing with terminals, installing frameworks on your machine, or worrying about scalability. With skapi, you can focus on building incredible web services without the hassle.
+          .card
+            .cardIcon 
+              img(src="@/assets/img/Asset14.png" style="width: 72px;")
+            .cardCont
+              h4 Database
+              p Experience the power of an auto-indexed, scalable database that combines the best of relational and NoSQL architectures. skapi's innovative database solution ensures optimal performance and flexibility for your web services.
+          .card
+            .cardIcon 
+              img(src="@/assets/img/Asset15.png" style="width: 86px;")
+            .cardCont
+              h4 Authentication
+              p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
+          .card
+            .cardIcon 
+              img(src="@/assets/img/Asset16.png" style="width: 122px;")
+            .cardCont
+              h4 Cloud Storage
+              p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
   section.sectionBox.getStart
+    .startCont 
+      h3 Getting Started
+      .levelWrap 
+        .levelBar 
+          .lb.lb1 
+            .num 01
+            .dot
+          .lb.lb2
+            .num 02
+            .dot
+          .lb.lb3 
+            .num 03
+            .dot
+        .levelInner
+          .level.lv1
+            .lvCont
+              .lvTit Create Service
+              .lvDesc Log and Create new Service from your dashboard 
+            .lvImg 
+              img(src="@/assets/img/lvImg1.png" style="width: 512px;")
+          .level.lv2
+            .lvCont
+              .lvTit Retrieve ID
+              .lvDesc Retrieve the service ID and the owner’s ID from the dashboard
+            .lvImg 
+              img(src="@/assets/img/lvImg2.png" style="width: 512px;")
+          .level.lv3
+            .lvCont
+              .lvTit Initialize Skapi
+              .lvDesc Import and Initialize Skapi from index.html. Replace ‘SERVICE_ID’ and ‘OWNERS_ID’ with appropriate value.
+            .lvImg 
+              img(src="@/assets/img/lvImg1.png" style="width: 512px;")
   section.sectionBox.trySkapi
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 
+let currentScroll = ref(0);
+let moveSpeed = ref(0);
+
+// onMounted(() => {
+//   let features = document.querySelector('.features');
+//   let featuresTop = features.getBoundingClientRect().top + window.pageYOffset;
+//   let stickyWrap = document.querySelector('.stickyWrap');
+//   let stickyWrapTop = stickyWrap.getBoundingClientRect().top + window.pageYOffset;
+//   let feaCont = document.querySelector('.feaCont');
+//   let cardWrap = document.querySelector('.cardWrap');
+//   let feaContPoition = feaCont.getBoundingClientRect();
+
+//   cardWrap.style.left = feaContPoition.left + "px";
+  
+//   // window.addEventListener('scroll', (e)=> {
+//   //   currentScroll = window.scrollY + 500;
+    
+//   //   let featuresTop = features.offsetTop;
+//   //   let moveSpeed = (currentScroll - featuresTop) * 1.3;
+
+//   //   if(currentScroll >= featuresTop) {
+//   //     cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+//   //   }
+//   // })
+
+//   window.addEventListener('scroll', (e) => {
+//     currentScroll = window.scrollY;
+//     moveSpeed = (currentScroll - stickyWrapTop);
+
+//     if(currentScroll >= featuresTop) {
+//       cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+
+//       // if(cardWrap.style.left = "-800px") {
+//       //   features.classList.add('posi')
+//       // }
+//     }
+
+//     // console.log(currentScroll, moveSpeed)
+//   })
+
+// })
 </script>
 
 <style lang="less">
@@ -212,66 +287,163 @@ main {
       }
     }
     &.features {
-      position: relative;
+      // position: relative;
       height: 100vh;
-      display: flex;
-      align-items: center;
-
-      .feaCont {
-        width: 1024px;
+      
+      .stickyWrap {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: sticky;
+        top: 0;
         margin: 0 auto;
-        padding-bottom: 400px;
 
+        .feaCont {
+          width: 1024px;
+          margin: 0 auto;
+          padding-bottom: 400px;
+  
+          h3 {
+            font-size: 32px;
+            font-weight: 700;
+          }
+        }
+        .cardWrap {
+          position: absolute;
+          left: 0;
+          width: 1960px;
+  
+          .cardInner {
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+  
+            &:last-child {
+              margin-right: 0;
+            }
+            .card {
+              width: 460px;
+              height: 280px;
+              background: #fafafa;
+              box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+              border-radius: 8px;
+              margin-right: 40px;
+              padding: 0 30px;
+              display: flex;
+              flex-wrap: nowrap;
+  
+              .cardIcon {
+                width: 30%;
+                padding-right: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+  
+                img {
+                  width: 100%;
+                }
+              }
+              .cardCont {
+                width: 70%;
+  
+                h4 {
+                  font-size: 20px;
+                  font-weight: 700;
+                  margin: 0;
+                  padding: 40px 0 18px 0;
+                }
+                p {
+                  font-size: 14px;
+                  font-weight: 400;
+                  line-height: 24px;
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.getStart {
+      width: 1024px;
+      height: 100vh;
+      margin: 0 auto;
+
+      .startCont {
         h3 {
           font-size: 32px;
           font-weight: 700;
         }
-      }
-      .cardWrap {
-        position: absolute;
-
-        .cardInner {
-          width: 100%;
+        .levelWrap {
           display: flex;
           flex-wrap: nowrap;
-          box-sizing: border-box;
 
-          .card {
-            width: 460px;
-            height: 280px;
-            background: #fafafa;
-            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 8px;
-            margin-right: 40px;
-            padding: 0 30px;
-            display: flex;
-            flex-wrap: nowrap;
+          .levelBar {
+            width: 20%;
 
-            .cardIcon {
-              width: 30%;
-              padding-right: 30px;
+            .lb {
               display: flex;
-              align-items: center;
-              justify-content: center;
+              flex-wrap: nowrap;
 
-              img {
-                width: 100%;
+              .num {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+                border: 10px solid transparent;
+                border-radius: 50%;
+                background-image: linear-gradient(#fff, #fff), 
+                linear-gradient(to right, #001CE9 0%, #fff 100%);
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 40px;
+                font-weight: 700;
               }
             }
-            .cardCont {
-              width: 70%;
+          }
+          .levelInner {
+            width: 80%;
+            
+            &:last-child {
+              padding-bottom: 0;
+            }
+            .level {
+              display: flex;
+              flex-wrap: nowrap;
+              height: 300px;
+              padding-bottom: 58px;
 
-              h4 {
-                font-size: 20px;
-                font-weight: 700;
-                margin: 0;
-                padding: 40px 0 18px 0;
+              .lvCont {
+                width: calc(100% - 512px);
+                margin-right: 24px;
+                box-sizing: border-box;
+
+                .lvTit {
+                  font-size: 24px;
+                  font-weight: 700;
+                  margin-bottom: 20px;
+                }
+                .lvDesc {
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: 24px;
+                }
               }
-              p {
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 24px;
-                margin: 0;
+              .lvImg {
+                width: 512px;
+                box-sizing: border-box;
+
+                img {
+                  width: 512px;
+                  height: 300px;
+                  object-fit: cover;
+                  object-position: top;
+                  border-radius: 8px;
+                }
               }
             }
           }
