@@ -27,35 +27,36 @@ main
     .videoCont 
       img(src="@/assets/img/video.svg")
   section.sectionBox.features
-    .feaCont 
-      .cardTit
-        h3 Key Features
-      .cardWrap()
-        .cardInner
-          .card
-            .cardIcon 
-              img(src="@/assets/img/Asset21.svg" style="width: 103px;")
-            .cardCont
-              h4 Serverless Architecture
-              p Embrace the simplicity of skapi's 100% serverless architecture. Say goodbye to dealing with terminals, installing frameworks on your machine, or worrying about scalability. With skapi, you can focus on building incredible web services without the hassle.
-          .card
-            .cardIcon 
-              img(src="@/assets/img/Asset14.png" style="width: 72px;")
-            .cardCont
-              h4 Database
-              p Experience the power of an auto-indexed, scalable database that combines the best of relational and NoSQL architectures. skapi's innovative database solution ensures optimal performance and flexibility for your web services.
-          .card
-            .cardIcon 
-              img(src="@/assets/img/Asset15.png" style="width: 86px;")
-            .cardCont
-              h4 Authentication
-              p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
-          .card
-            .cardIcon 
-              img(src="@/assets/img/Asset16.png" style="width: 122px;")
-            .cardCont
-              h4 Cloud Storage
-              p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
+    .stickyWrap
+      .stickyInner
+        .feaCont 
+          h3 Key Features
+        .cardWrap()
+          .cardInner
+            .card
+              .cardIcon 
+                img(src="@/assets/img/Asset21.svg" style="width: 103px;")
+              .cardCont
+                h4 Serverless Architecture
+                p Embrace the simplicity of skapi's 100% serverless architecture. Say goodbye to dealing with terminals, installing frameworks on your machine, or worrying about scalability. With skapi, you can focus on building incredible web services without the hassle.
+            .card
+              .cardIcon 
+                img(src="@/assets/img/Asset14.png" style="width: 72px;")
+              .cardCont
+                h4 Database
+                p Experience the power of an auto-indexed, scalable database that combines the best of relational and NoSQL architectures. skapi's innovative database solution ensures optimal performance and flexibility for your web services.
+            .card
+              .cardIcon 
+                img(src="@/assets/img/Asset15.png" style="width: 86px;")
+              .cardCont
+                h4 Authentication
+                p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
+            .card
+              .cardIcon 
+                img(src="@/assets/img/Asset16.png" style="width: 122px;")
+              .cardCont
+                h4 Cloud Storage
+                p Take advantage of unlimited, pay-as-you-go cloud storage with skapi. Whether it's web hosting or serving large files with security restrictions, our platform provides the flexibility and reliability you need to manage your digital assets.
   section.sectionBox.getStart
     .startCont 
       h3 Getting Started
@@ -118,17 +119,43 @@ main
 <script setup>
 import { onMounted, ref } from 'vue';
 
+let currentScroll = ref(0);
+let moveSpeed = ref(0);
+
 onMounted(() => {
-  let cardTit = document.querySelector('.cardTit');
-  let cardInner = document.querySelector('.cardInner');
-  let feaContPoition = cardTit.getBoundingClientRect();
+  let features = document.querySelector('.features');
+  let featuresTop = features.getBoundingClientRect().top + window.pageYOffset;
+  let feaCont = document.querySelector('.feaCont');
+  let cardWrap = document.querySelector('.cardWrap');
+  let feaContPoition = feaCont.getBoundingClientRect();
 
-  cardInner.style.width = 1960 + feaContPoition.left + "px";
-  cardInner.style.paddingLeft = feaContPoition.left + "px";
+  cardWrap.style.left = feaContPoition.left + "px";
+  
+  // window.addEventListener('scroll', (e)=> {
+  //   currentScroll = window.scrollY + 500;
+    
+  //   let featuresTop = features.offsetTop;
+  //   let moveSpeed = (currentScroll - featuresTop) * 1.3;
 
-  let barNum = document.querySelectorAll('.levelBar .num');
-  let barDot = document.querySelectorAll('.levelBar .dot');
-  let level = document.querySelectorAll('.level');
+  //   if(currentScroll >= featuresTop) {
+  //     cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+  //   }
+  // })
+
+  window.addEventListener('scroll', (e) => {
+    currentScroll = window.scrollY;
+    moveSpeed = (currentScroll - featuresTop);
+
+    if(currentScroll >= featuresTop) {
+      cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+
+      // if(cardWrap.style.left = "-800px") {
+      //   features.classList.add('posi')
+      // }
+    }
+
+    console.log(currentScroll, featuresTop)
+  })
 
 })
 </script>
@@ -282,6 +309,7 @@ main {
       height: 363px;
       margin: 0 auto;
       margin-top: -250px;
+      margin-bottom: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -296,68 +324,77 @@ main {
       }
     }
     &.features {
-      .feaCont {  
-        padding: 250px 0;
+      height: 100vh;
 
-        .cardTit {
-          width: 1024px;
-          margin: 0 auto;
-          font-size: 32px;
-          font-weight: 700;
-        }
-        .cardWrap {
-          height: 290px;
-          overflow: scroll;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-  
-          &::-webkit-scrollbar {
-            display: none;
-          }
-          .cardInner {
-            width: 100%;
-            display: flex;
-            flex-wrap: nowrap;
-  
-            &:last-child {
-              margin-right: 0;
+      .stickyWrap {
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+
+        .stickyInner {
+          display: flex;
+          align-items: center;
+
+          .feaCont {
+            width: 1024px;
+            margin: 0 auto;
+            padding-bottom: 400px;
+
+            h3 {
+              font-size: 32px;
+              font-weight: 700;
             }
-            .card {
-              width: 460px;
-              height: 280px;
-              background: #fafafa;
-              box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-              border-radius: 8px;
-              margin-right: 40px;
-              padding-right: 24px;
+          }
+          .cardWrap {
+            position: absolute;
+            left: 0;
+
+            .cardInner {
+              width: 100%;
               display: flex;
               flex-wrap: nowrap;
-  
-              .cardIcon {
-                width: 30%;
+              box-sizing: border-box;
+
+              &:last-child {
+                margin-right: 0;
+              }
+              .card {
+                width: 460px;
+                height: 280px;
+                background: #fafafa;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 8px;
+                margin-right: 40px;
                 padding: 0 30px;
                 display: flex;
-                align-items: center;
-                justify-content: center;
-  
-                img {
-                  width: 100%;
+                flex-wrap: nowrap;
+
+                .cardIcon {
+                  width: 30%;
+                  padding-right: 30px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  img {
+                    width: 100%;
+                  }
                 }
-              }
-              .cardCont {
-                width: 70%;
-  
-                h4 {
-                  font-size: 20px;
-                  font-weight: 700;
-                  margin: 0;
-                  padding: 40px 0 18px 0;
-                }
-                p {
-                  font-size: 14px;
-                  font-weight: 400;
-                  line-height: 24px;
-                  margin: 0;
+                .cardCont {
+                  width: 70%;
+
+                  h4 {
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin: 0;
+                    padding: 40px 0 18px 0;
+                  }
+                  p {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    margin: 0;
+                  }
                 }
               }
             }
@@ -369,6 +406,7 @@ main {
       width: 1024px;
       height: 100vh;
       margin: 0 auto;
+      // margin-top: 100vh;
 
       .startCont {
         h3 {
@@ -388,14 +426,16 @@ main {
               display: flex;
               flex-wrap: nowrap;
               justify-content: space-between;
-              margin-bottom: 255px;
+              margin-bottom: 240px;
 
               .num {
                 width: 90px;
                 height: 90px;
+                margin: 10px;
                 border: 10px solid transparent;
                 border-radius: 50%;
-                background-image: linear-gradient(#fff, #fff);
+                background-image: linear-gradient(#fff, #fff), 
+                linear-gradient(to right, #001CE9 0%, #fff 100%);
                 background-origin: border-box;
                 background-clip: content-box, border-box;
                 display: flex;
@@ -403,58 +443,35 @@ main {
                 justify-content: center;
                 font-size: 40px;
                 font-weight: 700;
-
-                &.active {
-                  background-image: linear-gradient(#fff, #fff), 
-                  linear-gradient(to right, #001CE9 0%, #fff 100%);
-                }
               }
               .dot {
                 position: relative;
                 width: 30px;
                 height: 30px;
-                margin-top: 40px;
-                margin-right: 20px;
+                margin: 10px;
+                border: 10px solid transparent;
+                border-radius: 50%;
+                background-image: linear-gradient(to right, #001CE9 0%, #fff 100%),
+                linear-gradient(#fff, #fff);
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+                margin-top: 37px;
 
                 &::before {
                   position: absolute;
                   content: '';
                   left: 50%;
-                  top: 15px;
+                  top: 40px;
                   transform: translateX(-50%);
                   width: 10px;
                   height: 370px;
                   background-image: linear-gradient(to bottom, #001CE9 0%, #5B8BFB 100%);
                 }
-                &::after {
-                  position: absolute;
-                  content: '';
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 30px;
-                  height: 30px;
-                  border-radius: 50%;
-                  background-color: #fff;
-                }
-                &.active::after {
-                  width: 30px;
-                  height: 30px;
-                  border: 10px solid transparent;
-                  border-radius: 50%;
-                  background-image: linear-gradient(to right, #001CE9 0%, #fff 100%),
-                  linear-gradient(#fff, #fff);
-                  background-origin: border-box;
-                  background-clip: content-box, border-box;
-                }
               }
               &.lb2 {
-                .dot {
-                  margin-top: 35px;
-
-                  &::before {
-                    background-image: linear-gradient(to bottom, #5B8BFB 0%, #fff 100%);
-                  }
-                }
+                .dot::before {
+                  background-image: linear-gradient(to bottom, #5B8BFB 0%, #fff 100%);
+                } 
               }
               &.lb3 {
                 .dot::before {
@@ -477,9 +494,6 @@ main {
               height: 300px;
               padding-bottom: 58px;
 
-              &.lv2 {
-                padding-bottom: 72px;
-              }
               .lvCont {
                 width: 260px;
                 margin-left: 20px;
