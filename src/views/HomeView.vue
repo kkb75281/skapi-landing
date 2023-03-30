@@ -4,6 +4,7 @@ main
     .overflow
       .helloSkapi
         .helloCont
+          img.logo(src="@/assets/img/Skapi_logo.svg")
           .tit
             .withImg 
               img.icon1(src="@/assets/img/Asset5.svg")
@@ -16,11 +17,12 @@ main
               em Your Website with 
               img.icon6(src="@/assets/img/Asset7.svg")
             .withBtn
-              span Robust Backend API
+              span A Robust Backend API
               button GET STARTED
                 img(src="@/assets/img/Asset9.svg")
             .arrowImg 
               img(src="@/assets/img/Asset1.svg")
+          h3 Welcome to Skapi
           p "Welcome to skapi, a robust and easy-to-use API service designed to help developers build faster, more efficient, and scalable applications. Our platform offers a suite of advanced tools and features, allowing you to streamline your development process and focus on what matters most: creating incredible user experiences."
           button.readBtn Read Document
   section.sectionBox.showVideo
@@ -86,7 +88,7 @@ main
           .level.lv3
             .lvCont
               .lvTit Initialize Skapi
-              .lvDesc 
+              .lvDesc
                 | Import and Initialize Skapi from index.html. Replace
                 br
                 em ‘SERVICE_ID’ 
@@ -109,26 +111,50 @@ main
                   | ');
                   |  &lt;/script&gt;
   section.sectionBox.trySkapi
-    .tryCont 
-      h3 DON’T JUST TAKE OUR WORD FOR IT
-      h2 Ready to try Skapi?
-      button.startBtn Get Started
+      .tryCont 
+        h3 DON’T JUST TAKE OUR WORD FOR IT
+        h2 Ready to try Skapi?
+        button.startBtn Get Started
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 
+let currentScroll = ref(0);
+
 onMounted(() => {
+  let features = document.querySelector('.features');
+  let featuresTop = features.offsetTop + 200;
   let cardTit = document.querySelector('.cardTit');
-  let cardInner = document.querySelector('.cardInner');
   let feaContPoition = cardTit.getBoundingClientRect();
+  let cardWrap = document.querySelector('.cardWrap');
+  let cardInner = document.querySelector('.cardInner');
+  
+  cardWrap.style.left = feaContPoition.left + "px";
+  
+  window.addEventListener('scroll', () => {
+    let moveSpeed = (currentScroll - featuresTop) * 2;
+    let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
+    currentScroll = window.scrollY + (window.innerHeight/2);
 
-  cardInner.style.width = 1960 + feaContPoition.left + "px";
-  cardInner.style.paddingLeft = feaContPoition.left + "px";
+    if(currentScroll >= featuresTop) {
+      cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+    }
 
-  let barNum = document.querySelectorAll('.levelBar .num');
-  let barDot = document.querySelectorAll('.levelBar .dot');
-  let level = document.querySelectorAll('.level');
+    document.querySelectorAll('.lb').forEach((lb) => {
+      let num = lb.querySelector(".num");
+      let dot = lb.querySelector(".dot");
+
+      if(currentScroll >= lb.offsetTop) {
+        num.classList.add('active');
+        dot.classList.add('active');
+      } else {
+        num.classList.remove('active');
+        dot.classList.remove('active');
+      }
+    })
+
+  })
 
 })
 </script>
@@ -147,65 +173,65 @@ main {
       &::before {
         position: absolute;
         content: '';
-        bottom: 200px;
+        top: 545px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-48%);
         width: 2024px;
         height: 440px;
         background: url(../assets/img/Asset10.svg) no-repeat;
       }
       .helloSkapi {
         width: 1024px;
-        height: 100vh;
+        // height: 100vh;
         margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
         .helloCont {
           position: relative;
           text-align: center;
           
+          .logo {
+            width: 320px;
+            margin-top: 110px;
+          }
           .tit {
             position: relative;
-            font-size: 60px;
+            font-size: 52px;
             font-weight: 700;
-            margin-bottom: 128px;
+            margin: 35px 0 100px 0;
             color: #262626;
 
-            &:nth-child(2) {
-              padding-top: 24px;
-            }
             .withImg {
               display: flex;
               font-style: normal;
               align-items: center;
               justify-content: center;
               color: #293FE6;
+              margin-bottom: 10px;
   
               em {
                 padding: 0 25px;
               }
               img {
                 &.icon1 {
-                  width: 100px;
+                  width: 74px;
                 }
                 &.icon2 {
-                  width: 68px;
-                  padding-right: 35px;
+                  width: 59px;
+                  padding-right: 30px;
                 }
                 &.icon3 {
-                  width: 92px;
-                  padding-right: 25px;
+                  width: 80px;
+                  padding-right: 20px;
                 }
                 &.icon4 {
-                  width: 161px;
+                  width: 139px;
+                  margin-top: 8px;
                 }
                 &.icon5 {
-                  width: 127px;
+                  width: 99px;
                 }
                 &.icon6 {
-                  width: 137px;
+                  width: 131px;
                 }
               }
             }
@@ -213,50 +239,53 @@ main {
               display: flex;
               align-items: center;
               justify-content: center;
-              margin-top: 23px;
   
               span {
-                position: relative;
-    
-                &::before {
-                  position: absolute;
-                  content: '';
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(183.26deg, #FAFF00 2.7%, rgba(255, 230, 0, 0) 94.99%);
-                  z-index: -1;
-                }
+                height: 70px;
+                line-height: 70px;
+                background: linear-gradient(183.26deg, #FAFF00 2.7%, rgba(255, 230, 0, 0) 94.99%);
               }
               button {
-                width: 402px;
+                width: 355px;
                 height: 70px;
                 border: 0;
                 outline: 0;
-                font-size: 24px;
+                font-size: 20px;
+                font-weight: 700;
                 margin-left: 21px;
-                padding-left: 34px;
+                padding-left: 32px;
                 background: url(../assets/img/Asset6.svg) no-repeat;
+                background-size: cover;
                 color: #fff;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
+
                 img {
-                  width: 42px;
+                  width: 40px;
                   padding-left: 20px;
                 }
               }
             }
             .arrowImg {
               position: absolute;
-              right: -20px;
-              bottom: 0;
-              width: 110px;
+              right: 25px;
+              bottom: 10px;
+              width: 94px;
+              transform: rotate(-15deg);
             }
+          }
+          h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+            margin-bottom: 28px;
           }
           p {
             position: relative;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 500;
+            margin: 0;
             color: #262626;
           }
           .readBtn {
@@ -265,7 +294,7 @@ main {
             height: 40px;
             font-weight: 700;
             font-size: 16px;
-            margin-top: 62px;
+            margin: 70px 0 90px 0;
             color: #fff;
             background: #293FE6;
             border: 0.5px solid #8C8C8C;
@@ -281,7 +310,7 @@ main {
       width: 1024px;
       height: 363px;
       margin: 0 auto;
-      margin-top: -250px;
+      padding: 90px 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -297,7 +326,8 @@ main {
     }
     &.features {
       .feaCont {  
-        padding: 250px 0;
+        height: 500px;
+        padding: 110px 0 200px 0;
 
         .cardTit {
           width: 1024px;
@@ -306,14 +336,9 @@ main {
           font-weight: 700;
         }
         .cardWrap {
+          position: absolute;
           height: 290px;
-          overflow: scroll;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
   
-          &::-webkit-scrollbar {
-            display: none;
-          }
           .cardInner {
             width: 100%;
             display: flex;
@@ -424,7 +449,19 @@ main {
                   transform: translateX(-50%);
                   width: 10px;
                   height: 370px;
+                  background-color: #ddd;
+                }
+                &.active::before {
                   background-image: linear-gradient(to bottom, #001CE9 0%, #5B8BFB 100%);
+                  animation: fadeInText 1s ease-out forwards;
+                }
+                @keyframes fadeInText {
+                  0% {
+                    opacity: 0;
+                  }
+                  100% {
+                      opacity: 1;
+                  }
                 }
                 &::after {
                   position: absolute;
@@ -445,14 +482,16 @@ main {
                   linear-gradient(#fff, #fff);
                   background-origin: border-box;
                   background-clip: content-box, border-box;
+                  animation: fadeInText 0.1s ease-out forwards;
                 }
               }
               &.lb2 {
                 .dot {
                   margin-top: 35px;
 
-                  &::before {
+                  &.active::before {
                     background-image: linear-gradient(to bottom, #5B8BFB 0%, #fff 100%);
+                    animation: fadeInText 1s ease-out forwards;
                   }
                 }
               }
