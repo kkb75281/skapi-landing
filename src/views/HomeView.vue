@@ -102,22 +102,23 @@ main
                                 br
                                 em ‘OWNERS_ID’ 
                                 | with appropriate value.
-                        .lvImg.preCode
+                        .lvImg
                             .codeCopy(@click="codeCopy")
                                 img(src="@/assets/img/copy.svg")
-                            pre
-                                code 
-                                    |&lt;!DOCTYPE html&gt;
-                                    |  &lt;head&gt;
-                                    |    &lt;script src="https://broadwayinc.dev/lib/js/skapi/latest/skapi.js"&gt;&lt;/script&gt;
-                                    |  &lt;/head&gt;
-                                    |  &lt;script&gt;
-                                    |    let skapi = new Skapi('
-                                    span SERVICE_ID
-                                    | ', '
-                                    span OWNERS_ID
-                                    | ');
-                                    |  &lt;/script&gt;
+                            .preCode
+                                pre
+                                    code 
+                                        |&lt;!DOCTYPE html&gt;
+                                        |  &lt;head&gt;
+                                        |    &lt;script src="https://broadwayinc.dev/lib/js/skapi/latest/skapi.js"&gt;&lt;/script&gt;
+                                        |  &lt;/head&gt;
+                                        |  &lt;script&gt;
+                                        |    let skapi = new Skapi('
+                                        span SERVICE_ID
+                                        | ', '
+                                        span OWNERS_ID
+                                        | ');
+                                        |  &lt;/script&gt;
     section.sectionBox.trySkapi
         .tryCont 
             h3 DON’T JUST TAKE OUR WORD FOR IT
@@ -160,8 +161,8 @@ onMounted(() => {
         })
 
         let getStart = document.querySelector('.getStart');
-        let precode = document.querySelector('.preCode');
-        getStart.insertBefore(precode, null);
+        let lvImg3 = document.querySelector('.lv3 .lvImg');
+        getStart.insertBefore(lvImg3, null);
 
         window.addEventListener('scroll', () => {
             currentScroll = window.scrollY + (window.innerHeight / 1.3);
@@ -667,11 +668,12 @@ main {
                             }
 
                             .lvImg {
+                                position: relative;
                                 width: 512px;
                                 // width: 65%;
                                 box-sizing: border-box;
 
-                                &.preCode {
+                                .preCode {
                                     position: relative;
                                     height: 234px;
                                     background-color: #434343;
@@ -683,32 +685,33 @@ main {
                                     line-height: 24px;
                                     display: flex;
                                     align-items: center;
-                                    padding: 24px 28px;
+                                    padding: 0 28px;
 
                                     span {
                                         color: #7C8CFF;
                                     }
+                                }
 
-                                    .codeCopy {
-                                        position: absolute;
-                                        right: 24px;
-                                        top: 24px;
+                                .codeCopy {
+                                    position: absolute;
+                                    right: 24px;
+                                    top: 24px;
+                                    width: 24px;
+                                    height: 24px;
+                                    z-index: 99;
+
+                                    img {
                                         width: 24px;
                                         height: 24px;
-
-                                        img {
-                                            width: 24px;
-                                            height: 24px;
-                                            filter: invert(100%);
-                                            cursor: pointer;
-                                        }
+                                        filter: invert(100%);
+                                        cursor: pointer;
                                     }
                                 }
 
                                 img {
                                     width: 512px;
                                     height: 300px;
-                                    object-fit: cover;
+                                    // object-fit: cover;
                                     object-position: top;
                                     border-radius: 8px;
                                 }
@@ -758,6 +761,12 @@ main {
 
 @media (max-width: 390px) {
     main {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+           display: none;
+        }
+
         .sectionBox {
             .overflow {
                 width: 100%;
@@ -999,11 +1008,15 @@ main {
                         flex-wrap: nowrap;
 
                         .levelBar {
-                            width: 20%;
+                            width: 23%;
                             margin-top: 40px;
 
                             .lb {
                                 margin-bottom: 270px;
+
+                                &.lb3 {
+                                    margin-bottom: 0;
+                                }
 
                                 .num {
                                     position: relative;
@@ -1084,12 +1097,8 @@ main {
                         }
 
                         .levelInner {
-                            width: 80%;
+                            width: 77%;
                             margin-top: 57px;
-
-                            &:last-child {
-                                padding-bottom: 0;
-                            }
 
                             .level {
                                 flex-wrap: wrap;
@@ -1098,6 +1107,16 @@ main {
 
                                 &.lv2 {
                                     padding-bottom: 61px;
+                                }
+                                &.lv3 {
+                                    height: auto;
+                                    padding-bottom: 24px;
+
+                                    .lvCont {
+                                        .lvDesc {
+                                            margin-bottom: 0;
+                                        }
+                                    }
                                 }
 
                                 .lvCont {
@@ -1112,19 +1131,31 @@ main {
                                         margin-bottom: 16px;
                                     }
                                 }
+
+                                .lvImg {
+                                    width: 100%;
+                                    height: 160px;
+                                    overflow: hidden;
+                                    border-radius: 8px;
+
+                                    img {
+                                        object-position: right top;
+                                    }
+                                }
                             }
                         }
                     }
                 }
 
                 .lvImg {
+                    position: relative;
                     width: 100%;
-                    height: 160px;
 
-                    &.preCode {
+                    .preCode {
                         position: relative;
                         height: 234px;
                         background-color: #434343;
+                        border-radius: 0;
                         color: #fff;
                         overflow: scroll;
                         font-size: 16px;
@@ -1132,39 +1163,57 @@ main {
                         line-height: 24px;
                         display: flex;
                         align-items: center;
-                        padding: 24px 28px;
+                        padding: 0 20px;
 
                         span {
                             color: #7C8CFF;
                         }
+                    }
 
-                        .codeCopy {
-                            position: absolute;
-                            right: 24px;
-                            top: 24px;
+                    .codeCopy {
+                        position: absolute;
+                        right: 24px;
+                        top: 24px;
+                        width: 24px;
+                        height: 24px;
+                        z-index: 99;
+
+                        img {
                             width: 24px;
                             height: 24px;
-
-                            img {
-                                width: 24px;
-                                height: 24px;
-                                filter: invert(100%);
-                                cursor: pointer;
-                            }
+                            filter: invert(100%);
+                            cursor: pointer;
                         }
                     }
 
                     img {
-                        width: 100%;
+                        width: 512px;
                         height: 300px;
                         object-fit: cover;
-                        object-position: top right;
+                        object-position: top;
+                        border-radius: 8px;
                     }
                 }
             }
 
             &.trySkapi {
-                display: none;
+                width: 100%;
+                padding: 100px 2px;
+                // box-sizing: border-box;
+
+                h3 {
+                    font-size: 20px;
+                    margin-bottom: 12px;
+                }
+
+                h2 {
+                    font-size: 32px;
+                    margin-bottom: 48px;
+                }
+
+                .startBtn {
+                    margin-bottom: 0;
+                }
             }
         }
     }
