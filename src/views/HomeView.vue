@@ -110,7 +110,7 @@ main
                                     code 
                                         |&lt;!DOCTYPE html&gt;
                                         |  &lt;head&gt;
-                                        |    &lt;script src="https://broadwayinc.dev/lib/js/skapi/latest/skapi.js"&gt;&lt;/script&gt;
+                                        |    &lt;script src="https://cdn.jsdelivr.net/npm/skapi-js@latest/dist/skapi.js"&gt;&lt;/script&gt;
                                         |  &lt;/head&gt;
                                         |  &lt;script&gt;
                                         |    let skapi = new Skapi('
@@ -249,7 +249,8 @@ main {
                     text-align: center;
 
                     .logo {
-                        width: 320px;
+                        // width: 320px;
+                        width: 20rem;
                         margin-top: 110px;
                     }
 
@@ -711,7 +712,6 @@ main {
                                 img {
                                     width: 512px;
                                     height: 300px;
-                                    // object-fit: cover;
                                     object-position: top;
                                     border-radius: 8px;
                                 }
@@ -759,7 +759,7 @@ main {
     }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 1024px) {
     main {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -770,24 +770,192 @@ main {
         .sectionBox {
             .overflow {
                 width: 100%;
-                
-                &::before {
-                    top: 340px;
-                    transform: translateX(-53%);
-                    width: 550px;
-                    height: 122px;
-                }
 
                 .helloSkapi {
                     width: 100%;
                     
-                    .helloCont {
-                        text-align: left;
-                        
+                    .helloCont {                        
+                        .logo {
+                            width: 30vw;
+                        }
+                        .tit {
+                            font-size: 5vw;
+
+                            .withImg {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin-bottom: 10px;
+
+                                img {
+                                    &.icon1 {
+                                        width: 7vw;
+                                    }
+
+                                    &.icon2 {
+                                        width: 6vw;
+                                        padding-right: 3vw;
+                                    }
+
+                                    &.icon3 {
+                                        width: 8vw;
+                                        padding-right: 2vw;
+                                    }
+
+                                    &.icon4 {
+                                        width: 14vw;
+                                    }
+
+                                    &.icon5 {
+                                        width: 10vw;
+                                    }
+
+                                    &.icon6 {
+                                        width: 13vw;
+                                    }
+
+                                    &.icon7 {
+                                        display: none;
+                                    }
+                                }
+                            }
+
+                            .withBtn {
+                                button {
+                                    width: 35vw;
+                                }
+                            }
+
+                            .arrowImg {
+                                right: 2vw;
+                                width: 9vw;
+                            }
+                        }
+                        p {
+                            padding: 0 2vw;
+                        }
+                    }
+                }
+            }
+
+            &.showVideo {
+                width: 100%;
+            }
+
+            &.features {
+                width: 100%;
+            }
+
+            &.getStart {
+                width: 100%;
+                height: 100%;
+                padding: 10vw 0;
+                box-sizing: border-box;
+                
+                .startCont {
+                    .levelWrap {
+                        .levelBar {
+                            width: 20%;
+                            margin-top: 40px;
+
+                            .lb {
+                                margin-bottom: 255px;
+                                margin-bottom: 0;
+
+                                .num {
+                                    width: 8.9vw;
+                                    height: 8.9vw;
+                                    border: 1vw solid transparent;
+                                    font-size: 4vw;
+                                }
+
+                                .dot {
+                                    position: relative;
+                                    width: 3vw;
+                                    height: calc(30vw + 58px);
+                                    margin-top: 3.5vw;
+                                    margin-right: 2vw;
+
+                                    &::before {
+                                        width: 1vw;
+                                        height: 110%;
+                                    }
+
+                                    &::after {
+                                        width: 3vw;
+                                        height: 3vw;
+                                    }
+
+                                    &.active::after {
+                                        width: 3vw;
+                                        height: 3vw;
+                                        border: 1vw solid transparent;
+                                    }
+                                }
+                            }
+                        }
+                        .levelInner {
+                            .level {
+                                height: 30vw;
+
+                                .lvCont {
+                                    width: 30%;
+                                }
+
+                                .lvImg {
+                                    width: 70%;
+                                    height: 30vw;
+                                    overflow: hidden;
+                                    border-radius: 8px;
+
+                                    img {
+                                        width: 100%;
+                                        object-fit:cover;
+                                        object-position: right top;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.trySkapi {
+                width: 100%;
+                padding: 100px 2px;
+
+                h3 {
+                    font-size: 20px;
+                    margin-bottom: 12px;
+                }
+
+                h2 {
+                    font-size: 32px;
+                    margin-bottom: 48px;
+                }
+
+                .startBtn {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    main {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+           display: none;
+        }
+
+        .sectionBox {
+            .overflow {
+                .helloSkapi {
+                    .helloCont {                        
                         .logo {
                             width: 200px;
-                            padding: 28px 20px 0 20px;
-                            margin: 0;
                         }
                         .tit {
                             font-size: 32px;
@@ -857,26 +1025,11 @@ main {
                             }
 
                             .arrowImg {
-                                right: 27px;
+                                right: 6vw;
                                 bottom: 5px;
-                                width: 45px;
+                                width: 12vw;
                                 transform: rotate(24deg);
                             }
-                        }
-                        h3 {
-                            font-size: 28px;
-                            margin-bottom: 16px;
-                            padding: 20px;
-                            padding-bottom: 0;
-                        }
-
-                        p {
-                            padding: 16px 20px 0 20px;
-                            background: linear-gradient(183.26deg, #FAFF00 2.7%, rgba(255, 230, 0, 0) 40%);
-                        }
-
-                        .readBtn {
-                            margin: 28px 0 0 20px;
                         }
                     }
                 }
@@ -884,111 +1037,10 @@ main {
 
             &.showVideo {
                 width: 100%;
-                height: 250px;
-                margin: 0;
-                padding: 100px 0;
-                display: block;
-
-                .videoCont {
-                    position: relative;
-
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-                }
             }
 
             &.features {
                 width: 100%;
-
-                .feaCont {
-                    height: 100%;
-                    padding: 0 20px 100px 20px;
-
-                    .cardTit {
-                        width: 100%;
-                        font-size: 28px;
-
-                        h3 {
-                            margin-bottom: 28px;
-                        }
-                    }
-
-                    .cardWrap {
-                        position: relative;
-                        height: 100%;
-
-                        .cardInner {
-                            width: 100%;
-                            display: flex;
-                            flex-wrap: wrap;
-                            align-items: center;
-                            justify-content: center;
-
-                            &:last-child {
-                                margin-bottom: 0;
-                            }
-
-                            .card {
-                                width: 350px;
-                                padding: 40px;
-                                margin: 0;
-                                margin-bottom: 28px;
-                                flex-wrap: wrap;
-                                align-items: center;
-                                justify-content: space-between;
-                                
-                                &:first-child {
-                                    .icon {
-                                        img {
-                                            width: 88px;
-                                        }
-                                    }
-                                }
-                                &:nth-child(2) {
-                                    .icon {
-                                        img {
-                                            width: 65px;
-                                        }
-                                    }
-                                }
-                                &:nth-child(3) {
-                                    .icon {
-                                        img {
-                                            width: 77px;
-                                        }
-                                    }
-                                }
-                                &:last-child {
-                                    margin-right: 0;
-        
-                                    .icon {
-                                        img {
-                                            width: 106px;
-                                        }
-                                    }
-                                }
-                                .icon {
-                                    width: 40%;
-                                    padding: 0;
-                                }
-                                .tit {
-                                    width: 55%;
-                                    font-size: 20px;
-                                    padding: 0;
-                                }
-                                .cont {
-                                    width: 100%;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 24px;
-                                    margin: 0;
-                                }
-                            }
-                        }
-                    }
-                }
             }
 
             &.getStart {
@@ -1006,12 +1058,14 @@ main {
                     .levelWrap {
                         display: flex;
                         flex-wrap: nowrap;
+                        box-sizing: border-box;
 
                         .levelBar {
                             width: 23%;
                             margin-top: 40px;
 
                             .lb {
+                                justify-content: center;
                                 margin-bottom: 270px;
 
                                 &.lb3 {
@@ -1032,7 +1086,7 @@ main {
                                         left: 50%;
                                         top: 30px;
                                         transform: translateX(-50%);
-                                        width: 12px;
+                                        width: 10px;
                                         height: 300px;
                                         background-color: #ddd;
                                         z-index: 3;
@@ -1195,24 +1249,170 @@ main {
                     }
                 }
             }
+        }
+    }
+}
 
-            &.trySkapi {
+@media (max-width: 390px) {
+    main {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+           display: none;
+        }
+
+        .sectionBox {
+            .overflow {
+                &::before {
+                    top: 340px;
+                    transform: translateX(-53%);
+                    width: 550px;
+                    height: 122px;
+                }
+
+                .helloSkapi {
+                    .helloCont {
+                        text-align: left;
+                        
+                        .logo {
+                            padding: 28px 20px 0 20px;
+                            margin: 0;
+                        }
+                        .tit {
+                            font-size: 32px;
+                            margin: 30px 0 80px 0;
+                            padding: 0 20px;
+
+                            .arrowImg {
+                                right: 27px;
+                                width: 45px;
+                            }
+                        }
+                        h3 {
+                            font-size: 28px;
+                            margin-bottom: 16px;
+                            padding: 20px;
+                            padding-bottom: 0;
+                        }
+
+                        p {
+                            padding: 16px 20px 0 20px;
+                            background: linear-gradient(183.26deg, #FAFF00 2.7%, rgba(255, 230, 0, 0) 40%);
+                        }
+
+                        .readBtn {
+                            margin: 28px 0 0 20px;
+                        }
+                    }
+                }
+            }
+
+            &.showVideo {
                 width: 100%;
-                padding: 100px 2px;
-                // box-sizing: border-box;
+                height: 250px;
+                margin: 0;
+                padding: 100px 0;
+                display: block;
 
-                h3 {
-                    font-size: 20px;
-                    margin-bottom: 12px;
+                .videoCont {
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
                 }
+            }
 
-                h2 {
-                    font-size: 32px;
-                    margin-bottom: 48px;
-                }
+            &.features {
+                width: 100%;
 
-                .startBtn {
-                    margin-bottom: 0;
+                .feaCont {
+                    height: 100%;
+                    padding: 0 20px 100px 20px;
+
+                    .cardTit {
+                        width: 100%;
+                        font-size: 28px;
+
+                        h3 {
+                            margin-bottom: 28px;
+                        }
+                    }
+
+                    .cardWrap {
+                        position: relative;
+                        height: 100%;
+
+                        .cardInner {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+
+                            .card {
+                                width: 350px;
+                                padding: 40px;
+                                margin: 0;
+                                margin-bottom: 28px;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                justify-content: space-between;
+                                
+                                &:first-child {
+                                    .icon {
+                                        img {
+                                            width: 88px;
+                                        }
+                                    }
+                                }
+                                &:nth-child(2) {
+                                    .icon {
+                                        img {
+                                            width: 65px;
+                                        }
+                                    }
+                                }
+                                &:nth-child(3) {
+                                    .icon {
+                                        img {
+                                            width: 77px;
+                                        }
+                                    }
+                                }
+                                &:last-child {
+                                    margin-right: 0;
+        
+                                    .icon {
+                                        img {
+                                            width: 106px;
+                                        }
+                                    }
+                                }
+                                .icon {
+                                    width: 40%;
+                                    padding: 0;
+                                }
+                                .tit {
+                                    width: 55%;
+                                    font-size: 20px;
+                                    padding: 0;
+                                }
+                                .cont {
+                                    width: 100%;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
