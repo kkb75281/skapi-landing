@@ -507,7 +507,7 @@ main {
 
         &.getStart {
             width: 1024px;
-            height: 100vh;
+            // height: 100vh;
             margin: 0 auto;
 
             .startCont {
@@ -631,10 +631,6 @@ main {
                         width: 80%;
                         margin-top: 70px;
 
-                        &:last-child {
-                            padding-bottom: 0;
-                        }
-
                         .level {
                             display: flex;
                             flex-wrap: nowrap;
@@ -644,6 +640,10 @@ main {
 
                             &.lv2 {
                                 padding-bottom: 72px;
+                            }
+
+                            &.lv3 {
+                                padding-bottom: 0;
                             }
 
                             .lvCont {
@@ -725,6 +725,7 @@ main {
         &.trySkapi {
             width: 1024px;
             margin: 0 auto;
+            padding: 10vw 0;
             text-align: center;
             font-weight: 700;
 
@@ -747,7 +748,7 @@ main {
                 height: 40px;
                 font-weight: 700;
                 font-size: 16px;
-                margin-bottom: 350px;
+                // margin-bottom: 350px;
                 color: #fff;
                 background: #293FE6;
                 border: 0.5px solid #8C8C8C;
@@ -844,6 +845,12 @@ main {
 
             &.features {
                 width: 100%;
+
+                .feaCont {
+                    .cardTit {
+                        padding-left: 20px;
+                    }
+                }
             }
 
             &.getStart {
@@ -853,6 +860,8 @@ main {
                 box-sizing: border-box;
                 
                 .startCont {
+                    padding: 0 20px;
+
                     .levelWrap {
                         .levelBar {
                             width: 20%;
