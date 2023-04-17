@@ -145,6 +145,7 @@ function codeCopy() {
 onMounted(() => {
     function Mobile() { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); }
     if (Mobile()) {
+        console.log('mobile')
         let cards = document.querySelectorAll('.card');
         
         cards.forEach((card) => {
@@ -399,7 +400,7 @@ main {
                 position: absolute;
 
                 img {
-                    width: 621px;
+                    width: 100%;
                     height: 363px;
                 }
             }
