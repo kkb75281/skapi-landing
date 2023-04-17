@@ -143,7 +143,7 @@ function codeCopy() {
 }
 
 onMounted(() => {
-    function Mobile() { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); }
+    function Mobile() { return /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); }
     if (Mobile()) {
         console.log('mobile')
         let cards = document.querySelectorAll('.card');
@@ -182,6 +182,7 @@ onMounted(() => {
             })
         })
     } else {
+        console.log('pc')
         let features = document.querySelector('.features');
         let featuresTop = features.offsetTop + 200;
         let cardTit = document.querySelector('.cardTit');
@@ -221,6 +222,7 @@ onMounted(() => {
 <style lang="less">
 main {
     height: 100%;
+    overflow-x: hidden;
     background-color: #f5f5f5;
 
     .sectionBox {
@@ -412,8 +414,8 @@ main {
             overflow: hidden;
 
             .feaCont {
-                height: 500px;
-                padding: 110px 0 200px 0;
+                height: 400px;
+                padding: 150px 0;
 
                 .cardTit {
                     width: 1024px;
@@ -1161,7 +1163,8 @@ main {
                         }
 
                         .levelInner {
-                            width: 77%;
+                            width: 75%;
+                            margin-left: 2%;
                             margin-top: 57px;
 
                             .level {
@@ -1263,7 +1266,7 @@ main {
     }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 450px) {
     main {
         -ms-overflow-style: none;
         scrollbar-width: none;
