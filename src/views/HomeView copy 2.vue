@@ -190,14 +190,14 @@ onMounted(() => {
         let cardWrap = document.querySelector('.cardWrap');
         let cardInner = document.querySelector('.cardInner');
     
-        // console.log(feaContPoition.left)
+        console.log(feaContPoition.left)
 
-        // cardWrap.style.left = feaContPoition.left + "px";
+        cardWrap.style.left = feaContPoition.left + "px";
     
         window.addEventListener('scroll', () => {
             let moveSpeed = (currentScroll - featuresTop);
-            // let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
-            currentScroll = window.scrollY + (window.innerHeight / 1.7);
+            let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
+            currentScroll = window.scrollY + (window.innerHeight / 2);
     
             if (currentScroll >= featuresTop) {
                 cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
@@ -416,12 +416,12 @@ main {
             overflow: hidden;
 
             .feaCont {
-                width: 1024px;
                 height: 400px;
-                margin: 0 auto;
                 padding: 150px 0;
 
                 .cardTit {
+                    width: 1024px;
+                    margin: 0 auto;
                     font-size: 32px;
                     font-weight: 700;
 
