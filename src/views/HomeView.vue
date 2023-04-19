@@ -184,7 +184,7 @@ onMounted(() => {
     } else {
         console.log('pc')
         let features = document.querySelector('.features');
-        let featuresTop = features.offsetTop + 200;
+        let featuresTop = features.offsetTop;
         let cardWrap = document.querySelector('.cardWrap');
     
         window.addEventListener('scroll', () => {
@@ -192,7 +192,7 @@ onMounted(() => {
 
             let moveSpeed = (currentScroll - featuresTop);
     
-            if (currentScroll >= featuresTop) {
+            if ((currentScroll >= featuresTop) && (cardWrap.style.left <= 0)) {
                 cardWrap.style.left = - moveSpeed + "px";
             }
     
