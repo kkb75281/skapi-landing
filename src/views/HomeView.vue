@@ -189,11 +189,13 @@ onMounted(() => {
     
         window.addEventListener('scroll', () => {
             currentScroll = window.scrollY + (window.innerHeight / 2);
-
-            let moveSpeed = (currentScroll - featuresTop);
+            
+            let moveSpeed = -(currentScroll - featuresTop);
     
-            if ((currentScroll >= featuresTop) && (cardWrap.style.left <= 0)) {
-                cardWrap.style.left = - moveSpeed + "px";
+            if (currentScroll >= featuresTop) {
+                cardWrap.style.left = moveSpeed + "px";
+            } else {
+                cardWrap.style.left = 0;
             }
     
             document.querySelectorAll('.lb').forEach((lb) => {
