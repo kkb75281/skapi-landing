@@ -38,7 +38,7 @@ main
         .feaCont 
             .cardTit
                 h3 Key Features
-            .cardWrap()
+            .cardWrap(style="left: 0")
                 .cardInner
                     .card
                         .icon
@@ -190,17 +190,26 @@ onMounted(() => {
         let cardWrap = document.querySelector('.cardWrap');
         let cardInner = document.querySelector('.cardInner');
     
-        console.log(feaContPoition.left)
+        // console.log(feaContPoition.left)
 
-        cardWrap.style.left = feaContPoition.left + "px";
+        // cardWrap.style.left = feaContPoition.left + "px";
+
     
         window.addEventListener('scroll', () => {
             let moveSpeed = (currentScroll - featuresTop);
-            let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
-            currentScroll = window.scrollY + (window.innerHeight / 2);
+            // let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
+            currentScroll = window.scrollY + (window.innerHeight / 1.7);
     
-            if (currentScroll >= featuresTop) {
-                cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+            let left = cardWrap.style.left;
+            left = left.replace('px', '');
+            left = parseInt(left);
+            console.log(left)
+
+            if (currentScroll >= featuresTop && left <= 0) {
+                let calc = left - moveSpeed;
+                calc = calc > 0 ? 0 : calc;
+
+                cardWrap.style.left = calc + "px";
             }
     
             document.querySelectorAll('.lb').forEach((lb) => {
@@ -411,17 +420,17 @@ main {
         }
 
         &.features {
-            position: relative;
             width: 100vw;
             overflow: hidden;
-
+            
             .feaCont {
-                height: 400px;
+                position: relative;
+                width: 1024px;
+                // height: 400px;
+                margin: 0 auto;
                 padding: 150px 0;
 
                 .cardTit {
-                    width: 1024px;
-                    margin: 0 auto;
                     font-size: 32px;
                     font-weight: 700;
 
@@ -433,6 +442,7 @@ main {
 
                 .cardWrap {
                     position: absolute;
+                    // left: 0;
                     height: 290px;
 
                     .cardInner {

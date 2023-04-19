@@ -4,7 +4,7 @@ main
         .overflow
             .helloSkapi
                 .helloCont
-                    img.logo(src="@/assets/img/Skapi_logo.svg")
+                    img.logoImg(src="@/assets/img/Skapi_logo.svg")
                     .tit
                         .withImg 
                             img.icon1(src="@/assets/img/Asset5.svg")
@@ -185,22 +185,15 @@ onMounted(() => {
         console.log('pc')
         let features = document.querySelector('.features');
         let featuresTop = features.offsetTop + 200;
-        let cardTit = document.querySelector('.cardTit');
-        let feaContPoition = cardTit.getBoundingClientRect();
         let cardWrap = document.querySelector('.cardWrap');
-        let cardInner = document.querySelector('.cardInner');
-    
-        // console.log(feaContPoition.left)
-
-        // cardWrap.style.left = feaContPoition.left + "px";
     
         window.addEventListener('scroll', () => {
+            currentScroll = window.scrollY + (window.innerHeight / 2);
+
             let moveSpeed = (currentScroll - featuresTop);
-            // let cardInnerRight = cardInner.getBoundingClientRect().right - 1024;
-            currentScroll = window.scrollY + (window.innerHeight / 1.7);
     
             if (currentScroll >= featuresTop) {
-                cardWrap.style.left = (feaContPoition.left - moveSpeed) + "px";
+                cardWrap.style.left = - moveSpeed + "px";
             }
     
             document.querySelectorAll('.lb').forEach((lb) => {
@@ -223,9 +216,14 @@ onMounted(() => {
 
 <style lang="less">
 main {
+    max-width: unset !important;
+    margin: unset !important;
+    padding: unset !important;
+    box-sizing: unset !important;
     height: 100%;
     overflow-x: hidden;
     background-color: #f5f5f5;
+
 
     .sectionBox {
         .overflow {
@@ -241,7 +239,7 @@ main {
                 transform: translateX(-48%);
                 width: 2024px;
                 height: 440px;
-                background: url(../assets/img/Asset10.svg) no-repeat;
+                background: url(@/assets/img/Asset10.svg) no-repeat;
             }
 
             .helloSkapi {
@@ -253,7 +251,7 @@ main {
                     position: relative;
                     text-align: center;
 
-                    .logo {
+                    .logoImg {
                         // width: 320px;
                         width: 20rem;
                         margin-top: 110px;
@@ -274,6 +272,7 @@ main {
 
                             em {
                                 padding: 0 25px;
+                                font-style: normal;
                             }
 
                             img {
@@ -282,7 +281,7 @@ main {
                                 }
 
                                 &.icon2 {
-                                    width: 59px;
+                                    width: 82px;
                                     padding-right: 30px;
                                 }
 
@@ -330,7 +329,7 @@ main {
                                 font-weight: 700;
                                 margin-left: 21px;
                                 padding-left: 32px;
-                                background: url(../assets/img/Asset6.svg) no-repeat;
+                                background: url(@/assets/img/Asset6.svg) no-repeat;
                                 background-size: cover;
                                 color: #fff;
                                 display: flex;
@@ -393,33 +392,23 @@ main {
         &.showVideo {
             position: relative;
             width: 1024px;
-            height: 363px;
-            margin: 0 auto;
-            padding: 90px 0;
+            height: 500px;
+            margin: 100px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-
-            .videoCont {
-                position: absolute;
-
-                img {
-                    width: 100%;
-                    height: 363px;
-                }
-            }
         }
 
         &.features {
-            position: relative;
             width: 100vw;
             overflow: hidden;
-
+            margin-bottom: 100px;
+            
             .feaCont {
+                position: relative;
                 width: 1024px;
-                height: 400px;
+                height: 500px;
                 margin: 0 auto;
-                padding: 150px 0;
 
                 .cardTit {
                     font-size: 32px;
@@ -512,7 +501,6 @@ main {
 
         &.getStart {
             width: 1024px;
-            // height: 100vh;
             margin: 0 auto;
 
             .startCont {
@@ -570,7 +558,7 @@ main {
                                     top: 15px;
                                     transform: translateX(-50%);
                                     width: 10px;
-                                    height: 370px;
+                                    height: 360px;
                                     background-color: #ddd;
                                 }
 
@@ -641,14 +629,14 @@ main {
                             flex-wrap: nowrap;
                             justify-content: space-between;
                             height: 300px;
-                            padding-bottom: 58px;
+                            margin-bottom: 58px;
 
                             &.lv2 {
-                                padding-bottom: 72px;
+                                margin-bottom: 72px;
                             }
 
                             &.lv3 {
-                                padding-bottom: 0;
+                                margin-bottom: 0;
                             }
 
                             .lvCont {
@@ -685,7 +673,7 @@ main {
                                     background-color: #434343;
                                     border-radius: 8px;
                                     color: #fff;
-                                    overflow: scroll;
+                                    overflow-x: auto;
                                     font-size: 16px;
                                     font-weight: 400;
                                     line-height: 24px;
@@ -770,7 +758,7 @@ main {
         -ms-overflow-style: none;
         scrollbar-width: none;
         &::-webkit-scrollbar {
-           display: none;
+            display: none;
         }
 
         .sectionBox {
@@ -788,18 +776,13 @@ main {
                             font-size: 5vw;
 
                             .withImg {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                margin-bottom: 10px;
-
                                 img {
                                     &.icon1 {
                                         width: 7vw;
                                     }
 
                                     &.icon2 {
-                                        width: 6vw;
+                                        width: 8vw;
                                         padding-right: 3vw;
                                     }
 
@@ -961,7 +944,7 @@ main {
         -ms-overflow-style: none;
         scrollbar-width: none;
         &::-webkit-scrollbar {
-           display: none;
+            display: none;
         }
 
         .sectionBox {
@@ -989,7 +972,7 @@ main {
                                     }
 
                                     &.icon2 {
-                                        width: 40px;
+                                        width: 50px;
                                         padding-right: 10px;
                                     }
 
@@ -1011,7 +994,7 @@ main {
 
                                     &.icon7 {
                                         display: block;
-                                        width: 55px;
+                                        width: 11.5vw;
                                     }
                                 }
                             }
@@ -1273,13 +1256,13 @@ main {
         -ms-overflow-style: none;
         scrollbar-width: none;
         &::-webkit-scrollbar {
-           display: none;
+            display: none;
         }
 
         .sectionBox {
             .overflow {
                 &::before {
-                    top: 340px;
+                    top: 450px;
                     transform: translateX(-53%);
                     width: 550px;
                     height: 122px;
@@ -1294,7 +1277,7 @@ main {
                             margin: 0;
                         }
                         .tit {
-                            font-size: 32px;
+                            font-size: 8vw;
                             margin: 30px 0 80px 0;
                             padding: 0 20px;
 
@@ -1324,17 +1307,11 @@ main {
 
             &.showVideo {
                 width: 100%;
-                height: 250px;
-                margin: 0;
-                padding: 100px 0;
-                display: block;
+                height: 100%;
 
                 .videoCont {
-                    position: relative;
-
                     img {
                         width: 100%;
-                        height: auto;
                     }
                 }
             }
@@ -1343,12 +1320,15 @@ main {
                 width: 100%;
 
                 .feaCont {
+                    width: 100%;
                     height: 100%;
-                    padding: 0 20px 100px 20px;
+                    padding: 0 20px;
+                    box-sizing: border-box;
 
                     .cardTit {
                         width: 100%;
                         font-size: 28px;
+                        padding-left: 0;
 
                         h3 {
                             margin-bottom: 28px;
@@ -1372,6 +1352,7 @@ main {
 
                             .card {
                                 width: 350px;
+                                height: auto;
                                 padding: 40px;
                                 margin: 0;
                                 margin-bottom: 28px;
@@ -1392,12 +1373,18 @@ main {
                                             width: 65px;
                                         }
                                     }
+                                    .cont {
+                                        padding-top: 20px;
+                                    }
                                 }
                                 &:nth-child(3) {
                                     .icon {
                                         img {
                                             width: 77px;
                                         }
+                                    }
+                                    .cont {
+                                        padding-top: 20px;
                                     }
                                 }
                                 &:last-child {
